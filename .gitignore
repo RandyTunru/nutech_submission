@@ -1,0 +1,11 @@
+.vscode
+
+#Compiled Output
+/dist
+/node_modules
+/build
+
+#Environment Variables
+.env
+.env.*
+!.env.example.*

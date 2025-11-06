@@ -29,7 +29,7 @@ services:
         condition: service_healthy
     networks:
       - nutech_network
-    command: ["npm", "run", "dev"]
+    command: ["npm", "run", "start"]
     volumes:
       - ./src:/usr/src/app/src
       - ./tsconfig.json:/usr/src/app/tsconfig.json

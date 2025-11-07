@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "start:dev": "ts-node-dev --respawn --transpile-only src/main.ts",
-    "start:prod": "node dist/main.js",
+    "build": "NODE_ENV=production tsc",
+    "start:dev": "NODE_ENV=development ts-node-dev --respawn --transpile-only src/main.ts",
+    "start:prod": "NODE_ENV=production node dist/main.js",
     "start": "npm run build && npm run start:prod",
     "migrate": "node-pg-migrate --envPath .env.development.app",
     "migrate:create": "npm run migrate create",
@@ -19,10 +19,12 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.926.0",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
     "pg": "^8.16.3",
     "zod": "^4.1.12"
   },
@@ -30,6 +32,7 @@
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.5",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
     "@types/node": "^24.10.0",
     "@types/node-pg-migrate": "^2.3.1",
     "@types/pg": "^8.15.6",

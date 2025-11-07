@@ -46,7 +46,7 @@ export const loginController = async (req: Request<{}, {}, LoginBody>, res: Resp
     } else {
       console.error('Unexpected error:', error);
       res.status(500).json({
-        status: 500,
+        status: 1,
         message: 'Internal server error',
       });
     }

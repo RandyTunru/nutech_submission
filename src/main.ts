@@ -7,6 +7,7 @@ import pool from './configs/database';
 
 import { errorHandler } from './middleware/error-handler';
 import authRouter from './routers/auth.router';
+import profileRouter from './routers/profile.router';
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
@@ -37,6 +38,7 @@ app.get('/health', async (req: Request, res: Response) => {
 
 // Routers
 app.use(authRouter);
+app.use(profileRouter);
 
 // Error Handling Middleware
 app.use(errorHandler);

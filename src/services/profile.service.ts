@@ -1,4 +1,3 @@
-import { email } from "zod";
 import pool from "../configs/database";
 import { UpdateProfileBody } from "../schemas/profile.schema";
 

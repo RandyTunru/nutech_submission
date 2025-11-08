@@ -1,13 +1,19 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: '.env.development.app' });
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({ path: '.env.prod.app' }); 
+} else {
+  dotenv.config({ path: '.env.development.app' });
+}
 
 import pool from './configs/database'; 
 
 import { errorHandler } from './middleware/error-handler';
 import authRouter from './routers/auth.router';
 import profileRouter from './routers/profile.router';
+import informationRouter from './routers/information.router';
+import transactionRouter from './routers/transaction.router'
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
@@ -39,6 +45,8 @@ app.get('/health', async (req: Request, res: Response) => {
 // Routers
 app.use(authRouter);
 app.use(profileRouter);
+app.use(informationRouter);
+app.use(transactionRouter);
 
 // Error Handling Middleware
 app.use(errorHandler);

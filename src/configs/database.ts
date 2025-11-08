@@ -7,6 +7,8 @@ const poolConfig = {
   password: process.env.DB_PASSWORD,
   port: parseInt(process.env.DB_PORT || '5432'),
 
+  ssl: { rejectUnauthorized: false },
+
   // --- Pool Configuration ---
   max: 20,
   idleTimeoutMillis: 30000,

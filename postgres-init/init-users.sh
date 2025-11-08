@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" --host "$POSTGRES_HOST" <<-EOSQL
     -- Create Roles with passwords from environment variables
     CREATE ROLE app_owner NOLOGIN;
     CREATE ROLE migrator WITH LOGIN PASSWORD '$MIGRATOR_USER_PASSWORD';
@@ -9,6 +9,9 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
 
     -- Grant Hierarchy
     GRANT app_owner TO migrator;
+
+    GRANT app_owner TO "$POSTGRES_USER";
+    GRANT migrator TO "$POSTGRES_USER";
     
     -- Configure Database
     GRANT CONNECT ON DATABASE "$POSTGRES_DB" TO app_owner, migrator, app_user;

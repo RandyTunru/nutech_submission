@@ -10,10 +10,11 @@ exports.shorthands = undefined;
  */
 exports.up = (pgm) => {
     pgm.sql(`
-        CREATE TABLE banners (
-            banner_name VARCHAR(100) PRIMARY KEY,
-            banner_image TEXT NOT NULL,
-            description TEXT NOT NULL
+        CREATE TABLE services (
+            service_code VARCHAR(50) PRIMARY KEY,
+            service_name VARCHAR(100) NOT NULL,
+            service_icon TEXT NOT NULL,
+            service_tariff INT NOT NULL
         );
     `)
 };
@@ -25,6 +26,6 @@ exports.up = (pgm) => {
  */
 exports.down = (pgm) => {
     pgm.sql(`
-        DROP TABLE IF EXISTS banners;
+        DROP TABLE IF EXISTS services;
     `)
 };

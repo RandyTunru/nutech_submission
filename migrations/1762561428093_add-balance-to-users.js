@@ -9,13 +9,7 @@ exports.shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-    pgm.sql(`
-        CREATE TABLE banners (
-            banner_name VARCHAR(100) PRIMARY KEY,
-            banner_image TEXT NOT NULL,
-            description TEXT NOT NULL
-        );
-    `)
+    pgm.sql('ALTER TABLE users ADD COLUMN balance BIGINT DEFAULT 0;');
 };
 
 /**
@@ -24,7 +18,5 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-    pgm.sql(`
-        DROP TABLE IF EXISTS banners;
-    `)
+    pgm.sql('ALTER TABLE users DROP COLUMN IF EXISTS balance;');
 };
